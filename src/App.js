@@ -9,9 +9,9 @@ class App extends Component{
     super(props);
     this.change= this.change.bind(this);
   }
-  
-  change(){
-    console.log("changed");
+
+  change(e){
+    console.log(e);
   }
 
   render(){
