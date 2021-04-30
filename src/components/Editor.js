@@ -9,7 +9,7 @@ class Editor extends Component{
           onChange={this.props.change}
           value="Enter Note Here..."
           options={{
-            autodocus: true
+            autofocus: true
           }}
         />
       </div>

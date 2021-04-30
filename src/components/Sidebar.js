@@ -7,7 +7,7 @@ class Sidebar extends Component{
       <div className="sidebar column column-25">
         <button className="button button-clear">+ Add Note</button>
         <List />
-        <p>new note... </p>
+        <p>{this.props.input}</p>
       </div>
     );
   }
