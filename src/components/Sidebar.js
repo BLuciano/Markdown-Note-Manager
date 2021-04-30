@@ -5,8 +5,8 @@ class Sidebar extends Component{
   render(){
     return (
       <div className="sidebar column column-25">
-        <button className="button button-clear">+ Add Note</button>
-        <List />
+        <button onClick={this.props.addNote} className="button button-clear">+ Add Note</button>
+        <List list={this.props.list}/>
         <p>{this.props.input}</p>
       </div>
     );

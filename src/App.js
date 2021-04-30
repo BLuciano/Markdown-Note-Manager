@@ -13,13 +13,21 @@ class App extends Component{
     };
 
     this.change= this.change.bind(this);
+    this.addNote = this.addNote.bind(this);
   }
 
   change(e){
     this.setState({
       input: e,
       list : this.state.list
-    })
+    });
+  }
+
+  addNote(){
+      this.setState({
+        input : this.state.input,
+        list : [...this.state.list, this.state.input]
+      });
   }
 
   render(){
@@ -27,7 +35,7 @@ class App extends Component{
       <div className="App container">
       <h1>Markdown Note Manager</h1>
         <div className="row">
-          <Sidebar input={this.state.input}/>
+          <Sidebar input={this.state.input} addNote={this.addNote} list={this.state.list}/>
           <Editor change={this.change} />
         </div>
       </div>
