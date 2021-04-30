@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
+import SimpleMDE from 'react-simplemde-editor';
 
 class Editor extends Component{
   render(){
     return (
       <div className="editor column column-75">
-        Editor
+        <SimpleMDE
+          onChange={this.handleChange}
+          value="hello"
+          options={{
+            autodocus: true
+          }}
+        />
       </div>
     );
   }

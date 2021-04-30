@@ -8,7 +8,8 @@ class App extends Component{
   render(){
     return (
       <div className="App container">
-        <div>
+      <h1>Markdown Note Manager</h1>
+        <div className="row">
           <Sidebar />
           <Editor />
         </div>
