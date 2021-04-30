@@ -1,11 +1,20 @@
 import React, {Component} from 'react';
+import 'milligram';
 
-function App() {
-  return (
-    <div className="App">
+import Sidebar from './components/Sidebar'
+import Editor from './components/Editor'
 
-    </div>
-  );
+class App extends Component{
+  render(){
+    return (
+      <div className="App container">
+        <div>
+          <Sidebar />
+          <Editor />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
