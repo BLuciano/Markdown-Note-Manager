@@ -6,7 +6,7 @@ class Editor extends Component{
     return (
       <div className="editor column column-75">
         <SimpleMDE
-          onChange={this.handleChange}
+          onChange={this.props.change}
           value="hello"
           options={{
             autodocus: true
