@@ -37,6 +37,10 @@ class App extends Component{
   }
 
   editNote(props){
+    document.querySelectorAll("li").forEach((item, i) => {
+      item.classList.remove("selected");
+    });
+    props.target.classList.add("selected");
     this.setState({
       input : props.target.textContent,
       list : this.state.list
