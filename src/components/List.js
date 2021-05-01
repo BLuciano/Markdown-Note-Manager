@@ -5,7 +5,9 @@ class List extends Component{
     return (
       <div>
         <ul>
-          {this.props.list.map((note, index) => <li key={index}>{note}</li>)}
+          {this.props.list.map((note, index) =>
+              <li className="column column-80" onClick={this.props.editNote} key={index}>{note}</li>
+          )}
         </ul>
       </div>
     );

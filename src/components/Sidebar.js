@@ -6,7 +6,7 @@ class Sidebar extends Component{
     return (
       <div className="sidebar column column-25">
         <button onClick={this.props.addNote} className="button button-clear">+ Add Note</button>
-        <List list={this.props.list}/>
+        <List editNote={this.props.editNote} list={this.props.list}/>
       </div>
     );
   }

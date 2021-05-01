@@ -9,12 +9,13 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-        input : "New note here...",
+        input : "",
         list : []
     };
 
     this.change= this.change.bind(this);
     this.addNote = this.addNote.bind(this);
+    this.editNote = this.editNote.bind(this);
   }
 
   change(e){
@@ -29,10 +30,17 @@ class App extends Component{
       alert("Sorry! Note cannot be empty");
     } else {
       this.setState({
-        input : this.state.input,
+        input : "",
         list : [...this.state.list, this.state.input]
       });
     }
+  }
+
+  editNote(props){
+    this.setState({
+      input : props.target.textContent,
+      list : this.state.list
+    });
   }
 
   render(){
@@ -40,9 +48,9 @@ class App extends Component{
       <div className="App container">
       <h1>Markdown Note Manager</h1>
         <div className="row">
-          <Sidebar input={this.state.input} addNote={this.addNote} list={this.state.list}/>
+          <Sidebar addNote={this.addNote} editNote={this.editNote} list={this.state.list}/>
           <div>
-            <Editor change={this.change} />
+            <Editor input={this.state.input} change={this.change} />
             <Preview input={this.state.input} />
           </div>
         </div>
