@@ -16,7 +16,7 @@ class App extends Component{
     super(props);
     this.state = {
         input : "",
-        list : []
+        list : localStorage.getItem('localList').split(",")
     };
 
     this.change= this.change.bind(this);
@@ -42,6 +42,8 @@ class App extends Component{
         input : "",
         list : [...this.state.list, this.state.input]
       });
+
+      localStorage.setItem('localList', [...this.state.list, this.state.input]);
     }
   }
 
@@ -69,6 +71,8 @@ class App extends Component{
         input : "",
         list : newList.filter(item => item !== "")
       });
+
+      localStorage.setItem('localList', newList.filter(item => item !== ""));
     }
   }
 
