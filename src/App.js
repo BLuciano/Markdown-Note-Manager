@@ -11,12 +11,20 @@ const clearSelected = () => {
   });
 }
 
+const saveToLocal = (list) => {
+  localStorage.setItem('localList', JSON.stringify(list));
+}
+
+let storage = JSON.parse(localStorage.getItem('localList'));
+storage = storage === null ? [] : storage;
+
+console.log((localStorage.getItem('localList')));
 class App extends Component{
   constructor(props){
     super(props);
     this.state = {
         input : "",
-        list : localStorage.getItem('localList').split(",")
+        list : storage
     };
 
     this.change= this.change.bind(this);
@@ -43,7 +51,7 @@ class App extends Component{
         list : [...this.state.list, this.state.input]
       });
 
-      localStorage.setItem('localList', [...this.state.list, this.state.input]);
+      saveToLocal([...this.state.list, this.state.input]);
     }
   }
 
@@ -72,7 +80,7 @@ class App extends Component{
         list : newList.filter(item => item !== "")
       });
 
-      localStorage.setItem('localList', newList.filter(item => item !== ""));
+      saveToLocal((newList.filter(item => item !== "")));
     }
   }
 
