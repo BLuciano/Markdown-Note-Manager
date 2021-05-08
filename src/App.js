@@ -5,6 +5,12 @@ import Sidebar from './components/Sidebar'
 import Editor from './components/Editor'
 import Preview from './components/Preview'
 
+const clearSelected = () => {
+  document.querySelectorAll("li").forEach((item, i) => {
+    item.classList.remove("selected");
+  });
+}
+
 class App extends Component{
   constructor(props){
     super(props);
@@ -15,7 +21,8 @@ class App extends Component{
 
     this.change= this.change.bind(this);
     this.addNote = this.addNote.bind(this);
-    this.editNote = this.editNote.bind(this);
+    this.selectNote = this.selectNote.bind(this);
+    this.changeNote = this.changeNote.bind(this);
   }
 
   change(e){
@@ -29,6 +36,8 @@ class App extends Component{
     if(this.state.input === ""){
       alert("Sorry! Note cannot be empty");
     } else {
+      clearSelected();
+
       this.setState({
         input : "",
         list : [...this.state.list, this.state.input]
@@ -36,15 +45,31 @@ class App extends Component{
     }
   }
 
-  editNote(props){
-    document.querySelectorAll("li").forEach((item, i) => {
-      item.classList.remove("selected");
-    });
+  selectNote(props){
+    clearSelected();
     props.target.classList.add("selected");
+
     this.setState({
       input : props.target.textContent,
       list : this.state.list
     });
+  }
+
+  changeNote(props){
+    let item = document.getElementsByClassName('selected')[0];
+    if(item === undefined){
+      alert("Please select an item to update!");
+    } else {
+      let text = this.state.input;
+      let newList = this.state.list;
+      newList[item.id] = text;
+      clearSelected();
+
+      this.setState({
+        input : "",
+        list : newList.filter(item => item !== "")
+      });
+    }
   }
 
   render(){
@@ -52,7 +77,7 @@ class App extends Component{
       <div className="App container">
       <h1>Markdown Note Manager</h1>
         <div className="row">
-          <Sidebar addNote={this.addNote} editNote={this.editNote} list={this.state.list}/>
+          <Sidebar addNote={this.addNote} selectNote={this.selectNote} changeNote={this.changeNote} list={this.state.list} input={this.state.input}/>
           <div>
             <Editor input={this.state.input} change={this.change} />
             <Preview input={this.state.input} />

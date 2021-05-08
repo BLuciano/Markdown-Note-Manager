@@ -6,7 +6,7 @@ class List extends Component{
       <div>
         <ul>
           {this.props.list.map((note, index) =>
-              <li className="column column-80" onClick={this.props.editNote} key={index}>{note}</li>
+              <li className="column column-80" onClick={this.props.selectNote} key={index} id={index}>{note}</li>
           )}
         </ul>
       </div>
